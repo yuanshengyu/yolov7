@@ -24,7 +24,7 @@ for filename in os.listdir(dir_train):
         lines = fr.readlines()
         for line in lines:
             parts = line.strip().split()
-            if len(parts) != 5:
+            if len(parts) %4 !=1:
                 continue
             clz = int(parts[0])
             if clz in keep_clz:
@@ -40,7 +40,7 @@ for filename in os.listdir(dir_val):
         lines = fr.readlines()
         for line in lines:
             parts = line.strip().split()
-            if len(parts) != 5:
+            if len(parts) %4 !=1:
                 continue
             clz = int(parts[0])
             if clz in keep_clz:
