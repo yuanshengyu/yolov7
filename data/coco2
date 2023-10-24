@@ -1,0 +1,10 @@
+path: datasets/coco2017
+train: datasets/coco2017/images/train2017
+val: datasets/coco2017/images/train2017
+test: # test images (optional)
+nc: 2
+
+# Classes
+names:
+  0: cat
+  1: dog
