@@ -1,0 +1,8 @@
+path: grommet
+train: grommet/train/images
+val: grommet/valid/images
+nc: 2
+
+names:
+  0: good
+  1: bad
