@@ -486,18 +486,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                 if os.path.isfile(lb_file):
                     nf += 1  # label found
                     with open(lb_file, 'r') as f:
-                        lines = f.read().strip().splitlines()
-                        l = []
-                        for line in lines:
-                            line_items = line.split()
-                            if line_items[0] == '15':
-                                line_items[0] = '0'
-                                l.append(line_items)
-                            elif line_items[0] == '16':
-                                line_items[0] = '1'
-                                l.append(line_items)
-                            else:
-                                continue
+                        l = [x.split() for x in f.read().strip().splitlines()]
                         if any([len(x) > 8 for x in l]):  # is segment
                             classes = np.array([x[0] for x in l], dtype=np.float32)
                             segments = [np.array(x[1:], dtype=np.float32).reshape(-1, 2) for x in l]  # (cls, xy1...)
@@ -509,12 +498,12 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                         assert (l[:, 1:] <= 1).all(), 'non-normalized or out of bounds coordinate labels'
                         assert np.unique(l, axis=0).shape[0] == l.shape[0], 'duplicate labels'
                     else:
-                        nm += 1  # label empty
+                        ne += 1  # label empty
+                        l = np.zeros((0, 5), dtype=np.float32)
                 else:
                     nm += 1  # label missing
-                    l = []
-                if len(l) != 0:
-                    x[im_file] = [l, shape, segments]
+                    l = np.zeros((0, 5), dtype=np.float32)
+                x[im_file] = [l, shape, segments]
             except Exception as e:
                 nc += 1
                 print(f'{prefix}WARNING: Ignoring corrupted image and/or label {im_file}: {e}')
