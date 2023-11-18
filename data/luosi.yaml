@@ -1,0 +1,11 @@
+path: luosi_yolo
+train: luosi_yolo/train/images
+val: luosi_yolo/valid/images
+nc: 5
+
+names:
+  0: loose
+  1: lost
+  2: wrong
+  3: good
+  4: rust
