@@ -1,1 +1,9 @@
-python train.py --data data/luosi.yaml --epochs 100 --weights /root/autodl-tmp/yolov7_training.pt --cfg cfg/training/yolov7.yaml  --batch-size 32
+python train.py --data data/luosi.yaml --epochs 120 --weights /root/autodl-tmp/yolov7_training.pt --cfg cfg/training/yolov7.yaml  --batch-size 32
+
+python train.py --data data/luosi.aug.yaml --epochs 120 --weights /root/autodl-tmp/yolov7_training.pt --cfg cfg/training/yolov7.yaml  --batch-size 32
+
+
+python train.py --data data/luosi2.yaml --epochs 120 --weights /root/autodl-tmp/yolov7_training.pt --cfg cfg/training/yolov7-2.yaml  --batch-size 32
+
+
+python train.py --data data/luosi2.aug.yaml --epochs 120 --weights /root/autodl-tmp/yolov7_training.pt --cfg cfg/training/yolov7-2.yaml  --batch-size 32
